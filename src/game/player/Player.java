@@ -6,11 +6,7 @@ import game.bases.GameObject;
 import game.bases.Vector2D;
 import game.bases.physics.BoxCollider;
 import game.bases.physics.Physicbody;
-import game.bases.physics.Physics;
 import game.bases.renderer.ImageRenderer;
-import game.items.Heart;
-
-import javax.swing.*;
 
 /**
  * Created by Nttung PC on 8/3/2017.
@@ -18,8 +14,7 @@ import javax.swing.*;
 public class Player extends GameObject implements Physicbody{
     PlayerMove playerMove;
     BoxCollider boxCollider;
-    FrameCounter frameCounter = new FrameCounter(5);
-
+    FrameCounter frameCounter = new FrameCounter(10);
 
     public Player() {
         super();
@@ -29,7 +24,7 @@ public class Player extends GameObject implements Physicbody{
     }
 
     public static Player createMalePlayer() {
-        Player player = new Player();
+        Player player = new MalePlayer();
         player.renderer = new ImageRenderer(Utils.loadImage("assets/images/playerboy/shape229.png"));
         return player;
     }
@@ -39,36 +34,20 @@ public class Player extends GameObject implements Physicbody{
     }
 
     public static Player createFemalePlayer() {
-        Player player = new Player();
+        Player player = new FemalePlayer();
         player.renderer = new ImageRenderer(Utils.loadImage("assets/images/playerboy/shape235.png"));
         return player;
     }
 
     @Override
     public void run(Vector2D parentPosition) {
-        super.run(parentPosition);
-
         if (playerMove != null)
             playerMove.move(this);
-
-        Heart eatHeart = Physics.bodyinRed(this.boxCollider, Heart.class);
-
-        if (eatHeart != null){
-            FemaleMove.velocity = 5;
-            eatHeart.getEat();
-        }
-
-        if (FemaleMove.velocity == 5){
-            if (frameCounter.run()){
-                frameCounter.reset();
-                FemaleMove.velocity = 10;
-            }
-        }
-
+        super.run(parentPosition);
     }
 
     @Override
     public BoxCollider getBoxCollider() {
-        return boxCollider;
+        return this.boxCollider;
     }
 }

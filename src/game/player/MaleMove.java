@@ -1,6 +1,7 @@
 package game.player;
 
 import game.bases.Vector2D;
+import game.scenes.BackGround;
 import inputs.InputManager;
 import tklibs.Mathx;
 
@@ -28,6 +29,6 @@ public class MaleMove implements PlayerMove{
             position.addUp(0,10);
         }
 
-        position.x = Mathx.clamp(position.x, 0,3296);
+        position.x = Mathx.clamp(position.x, 0,6000);
     }
 }

@@ -30,14 +30,6 @@ public class GameObject {
         isActive = true;
     }
 
-    public boolean isActive(boolean b) {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
     public static void add(GameObject gameObject){
         newGameObjects.add(gameObject);
         if (gameObject instanceof Physicbody){
@@ -65,29 +57,24 @@ public class GameObject {
         return this;
     }
 
+
     public GameObject setScreenPosition(float x, float y){
         this.screenPosition.set(x,y);
         return this;
     }
 
-//    public void render(Graphics2D g2d){
-//        if (renderer != null){
-//            renderer.render(g2d,this.screenPosition);
-//        }
-//    }
+    public void render(Graphics2D g2d){
+        if (renderer != null){
+            renderer.render(g2d,this.screenPosition);
+        }
+    }
 
     public static Vector<GameObject> getGameObjects() {
-        Vector<GameObject> gameObjectsIsActive = new Vector<>();
-        for (GameObject gameObject: gameObjects){
-            if (gameObject.isActive){
-                gameObjectsIsActive.add(gameObject);
-            }
-        }
-        return gameObjectsIsActive;
+        return gameObjects;
     }
 
     public void render(Graphics2D g2d, Camera camera) {
-        if (renderer != null) {
+        if (renderer != null && this.isActive) {
             renderer.render(g2d, this.screenPosition, camera);
         }
         for (GameObject child: children) {
@@ -95,10 +82,9 @@ public class GameObject {
         }
     }
 
-
-//    public static void renderALL(Graphics2D g2d){
-//        for (GameObject gameObject : gameObjects){
-//            gameObject.render(g2d);
-//        }
-//    }
+    public static void renderALL(Graphics2D g2d){
+        for (GameObject gameObject : gameObjects){
+            gameObject.render(g2d);
+        }
+    }
 }

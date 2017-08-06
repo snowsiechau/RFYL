@@ -13,6 +13,7 @@ public class InputManager {
     public boolean rightPressed;
     public boolean upPressed;
     public boolean downPressed;
+    public boolean bPressed;
 
     public boolean wPressed;
     public boolean sPressed;
@@ -63,6 +64,10 @@ public class InputManager {
                 sPressed = true;
                 break;
 
+            case KeyEvent.VK_B:
+                bPressed = true;
+                break;
+
         }
 
         for (InputListener inputListener : inputListeners){
@@ -96,6 +101,10 @@ public class InputManager {
                 break;
             case KeyEvent.VK_S:
                 sPressed = false;
+                break;
+
+            case KeyEvent.VK_B:
+                bPressed = false;
                 break;
         }
 

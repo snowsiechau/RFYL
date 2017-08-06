@@ -1,18 +1,22 @@
-package game.items;
+package game.player;
 
 import game.Utils;
 import game.bases.GameObject;
+import game.bases.Vector2D;
 import game.bases.physics.BoxCollider;
 import game.bases.physics.Physicbody;
 import game.bases.renderer.ImageRenderer;
 
 /**
- * Created by Nttung PC on 8/4/2017.
+ * Created by SNOW on 8/6/2017.
  */
-public class Poop extends GameObject implements Physicbody{
+public class PlayerPoopBullet extends GameObject implements Physicbody{
     BoxCollider boxCollider;
-    public Poop() {
+    Vector2D velocity;
+
+    public PlayerPoopBullet(Vector2D velocity) {
         super();
+        this.velocity = velocity;
         this.renderer = new ImageRenderer(Utils.loadImage("assets/images/items/poop.png"));
         this.boxCollider = new BoxCollider(32,32);
         children.add(boxCollider);
@@ -22,7 +26,17 @@ public class Poop extends GameObject implements Physicbody{
         this.isActive = false;
     }
 
+
+    @Override
+    public void run(Vector2D parentPosition) {
+        super.run(parentPosition);
+        this.position.addUp(velocity);
+    }
+
+    @Override
     public BoxCollider getBoxCollider() {
         return boxCollider;
     }
+
+
 }
