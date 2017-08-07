@@ -4,6 +4,7 @@ package game;
 import com.google.gson.Gson;
 import game.bases.GameObject;
 import game.bases.Vector2D;
+import game.bird.BirdSpawner;
 import game.gson.MapJson;
 import game.items.*;
 import game.scenes.BackGround;
@@ -52,11 +53,16 @@ public class GameWindow extends JFrame {
         addBackGround();
         readGson();
         addPlayer();
+        addBird();
         addIteam();
         addViewPorts();
         setupBackBuffer();
         this.setVisible(true);
 
+    }
+
+    private void addBird() {
+        GameObject.add(new BirdSpawner());
     }
 
     public void readGson(){

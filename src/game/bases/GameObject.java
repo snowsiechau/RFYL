@@ -1,13 +1,14 @@
 package game.bases;
 
 
+import game.actions.Action;
 import game.bases.physics.Physicbody;
 import game.bases.physics.Physics;
 import game.cameras.Camera;
 import game.bases.renderer.Renderer;
 
 import java.awt.*;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * Created by Nttung PC on 8/1/2017.
@@ -21,6 +22,9 @@ public class GameObject {
 
     public static Vector<GameObject> gameObjects = new Vector<>();
     public static Vector<GameObject> newGameObjects = new Vector<>();
+
+    private java.util.List<Action> newAction;
+    private Vector<Action> actions;
 
     public GameObject() {
         this.position = new Vector2D();
@@ -90,5 +94,31 @@ public class GameObject {
         for (GameObject gameObject : gameObjects){
             gameObject.render(g2d);
         }
+    }
+
+    public static void runAllAction(){
+        for (GameObject gameObject: gameObjects){
+            if (gameObject.isActive){
+                gameObject.runAction();
+            }
+        }
+    }
+
+    public void runAction(){
+        Iterator<Action> iterator = actions.iterator();
+        while (iterator.hasNext()){
+            Action action = iterator.next();
+            boolean actionDone = action.run(this);
+            if (actionDone){
+                iterator.remove();
+            }
+        }
+
+        actions.addAll(newAction);
+        newAction.clear();
+    }
+
+    public void addAction(Action action){
+        newAction.add(action);
     }
 }

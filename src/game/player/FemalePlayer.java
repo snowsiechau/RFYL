@@ -9,6 +9,7 @@ import game.items.Banana;
 import game.items.Heart;
 import game.items.Poop;
 import inputs.InputManager;
+import org.omg.CORBA.MARSHAL;
 import tklibs.Mathx;
 
 /**
@@ -21,13 +22,14 @@ public class FemalePlayer extends Player implements PlayerMove{
     boolean bulletDisable;
     FrameCounter cooldownBullet;
     FrameCounter cooldownBanana;
-    public static int v;
+    public static int vFemale;
 
     public FemalePlayer() {
         super();
         velocity = new Vector2D();
         this.cooldownBullet = new FrameCounter(30);
         cooldownBanana = new FrameCounter(30);
+        this.vFemale = 10;
     }
 
     @Override
@@ -35,19 +37,19 @@ public class FemalePlayer extends Player implements PlayerMove{
         this.velocity.set(0,0);
         Vector2D position = player.position;
         if (InputManager.instance.dPressed) {
-            this.velocity.x = v;
+            this.velocity.x = vFemale;
         }
 
         if (InputManager.instance.aPressed) {
-            this.velocity.x = -v;
+            this.velocity.x = -vFemale;
         }
 
         if (InputManager.instance.wPressed){
-            this.velocity.y = -v;
+            this.velocity.y = -vFemale;
         }
 
         if (InputManager.instance.sPressed){
-           this.velocity.y = v;
+           this.velocity.y = vFemale;
         }
         position.addUp(velocity);
         position.x = Mathx.clamp(position.x, 0,6000);
@@ -56,7 +58,6 @@ public class FemalePlayer extends Player implements PlayerMove{
     @Override
     public void run(Vector2D parentPosition) {
         super.run(parentPosition);
-
         eatHeart();
         eatPoop();
         castBullet();
@@ -65,12 +66,12 @@ public class FemalePlayer extends Player implements PlayerMove{
 
     private void stand() {
         if (eatBanana()){
-            v = 0;
+            vFemale = 0;
         }
-        if (v == 0){
+        if (vFemale == 0){
             if (cooldownBanana.run()){
                 cooldownBanana.reset();
-                v = 10;
+                vFemale = 10;
             }
         }
     }
@@ -78,8 +79,17 @@ public class FemalePlayer extends Player implements PlayerMove{
     private void castBullet() {
         if (!bulletDisable && bullet > 0){
             if (InputManager.instance.bPressed){
-                PlayerPoopBullet playerPoopBullet = new PlayerPoopBullet(new Vector2D(-20,0));
-                playerPoopBullet.position.set(this.position.x - 10, this.position.y - 20);
+                Vector2D velocityPoop;
+                Vector2D positionPoop;
+                if (this.position.x > MalePlayer.instanceMale.position.x){
+                    velocityPoop = new Vector2D(-20, 0);
+                    positionPoop = new Vector2D(this.position.x - 10, this.position.y - 20);
+                }else {
+                    velocityPoop = new Vector2D(20,0);
+                    positionPoop = new Vector2D(this.position.x + 10, this.position.y - 20);
+                }
+                PlayerPoopBullet playerPoopBullet = new PlayerPoopBullet(velocityPoop);
+                playerPoopBullet.position.set(positionPoop);
                 GameObject.add(playerPoopBullet);
                 bullet--;
             }
