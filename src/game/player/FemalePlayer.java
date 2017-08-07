@@ -20,11 +20,14 @@ public class FemalePlayer extends Player implements PlayerMove{
     public static int bullet;
     boolean bulletDisable;
     FrameCounter cooldownBullet;
+    FrameCounter cooldownBanana;
+    public static int v;
 
     public FemalePlayer() {
         super();
         velocity = new Vector2D();
         this.cooldownBullet = new FrameCounter(30);
+        cooldownBanana = new FrameCounter(30);
     }
 
     @Override
@@ -32,19 +35,19 @@ public class FemalePlayer extends Player implements PlayerMove{
         this.velocity.set(0,0);
         Vector2D position = player.position;
         if (InputManager.instance.dPressed) {
-            this.velocity.x = 10;
+            this.velocity.x = v;
         }
 
         if (InputManager.instance.aPressed) {
-            this.velocity.x = -10;
+            this.velocity.x = -v;
         }
 
         if (InputManager.instance.wPressed){
-            this.velocity.y = -10;
+            this.velocity.y = -v;
         }
 
         if (InputManager.instance.sPressed){
-           this.velocity.y = 10;
+           this.velocity.y = v;
         }
         position.addUp(velocity);
         position.x = Mathx.clamp(position.x, 0,6000);
@@ -57,7 +60,19 @@ public class FemalePlayer extends Player implements PlayerMove{
         eatHeart();
         eatPoop();
         castBullet();
+        stand();
+    }
 
+    private void stand() {
+        if (eatBanana()){
+            v = 0;
+        }
+        if (v == 0){
+            if (cooldownBanana.run()){
+                cooldownBanana.reset();
+                v = 10;
+            }
+        }
     }
 
     private void castBullet() {

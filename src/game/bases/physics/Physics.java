@@ -16,7 +16,7 @@ public class Physics {
 
     public static <T extends Physicbody> T bodyinRed(BoxCollider boxCollider, Class<T> classz){
         for (Physicbody body: bodies){
-            if (body.getBoxCollider().collideWidth(boxCollider)){
+            if (body.isActive() && body.getBoxCollider().collideWidth(boxCollider)){
                 if (body.getClass() == classz){
                     return (T) body;
                 }

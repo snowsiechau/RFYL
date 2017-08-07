@@ -6,5 +6,5 @@ package game.bases.physics;
 public interface Physicbody {
 
     BoxCollider getBoxCollider();
-
+    boolean isActive();
 }

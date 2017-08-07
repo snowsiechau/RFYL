@@ -1,12 +1,15 @@
 package game.player;
 
+import com.sun.corba.se.impl.interceptors.PIHandlerImpl;
 import game.Utils;
 import game.bases.FrameCounter;
 import game.bases.GameObject;
 import game.bases.Vector2D;
 import game.bases.physics.BoxCollider;
 import game.bases.physics.Physicbody;
+import game.bases.physics.Physics;
 import game.bases.renderer.ImageRenderer;
+import game.items.Banana;
 
 /**
  * Created by Nttung PC on 8/3/2017.
@@ -14,11 +17,9 @@ import game.bases.renderer.ImageRenderer;
 public class Player extends GameObject implements Physicbody{
     PlayerMove playerMove;
     BoxCollider boxCollider;
-    FrameCounter frameCounter = new FrameCounter(10);
 
     public Player() {
         super();
-        frameCounter = new FrameCounter(50);
         boxCollider = new BoxCollider(40,40);
         children.add(boxCollider);
     }
@@ -44,7 +45,18 @@ public class Player extends GameObject implements Physicbody{
         if (playerMove != null)
             playerMove.move(this);
         super.run(parentPosition);
+        eatBanana();
     }
+
+    public boolean eatBanana() {
+        Banana eatBanana = Physics.bodyinRed(this.boxCollider, Banana.class);
+        if (eatBanana != null){
+            eatBanana.getEat();
+            return true;
+        }
+        return false;
+    }
+
 
     @Override
     public BoxCollider getBoxCollider() {

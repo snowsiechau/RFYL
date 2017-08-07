@@ -15,16 +15,15 @@ public class MalePlayer extends Player implements PlayerMove{
 
     Vector2D velocity;
     public int condom = 10;
-    FrameCounter slowPoopBullet;
     FrameCounter cooldownBanana;
-    public static int v;
-    boolean bananaStand;
+    FrameCounter slowPoopBullet;
+    static int v;
 
     public MalePlayer() {
         super();
         this.v = 10;
         velocity = new Vector2D();
-        slowPoopBullet = new FrameCounter(5);
+        slowPoopBullet = new FrameCounter(50);
         cooldownBanana = new FrameCounter(30);
     }
 
@@ -33,19 +32,19 @@ public class MalePlayer extends Player implements PlayerMove{
         Vector2D position = player.position;
         velocity.set(0,0);
         if (InputManager.instance.rightPressed) {
-            velocity.x=v;
+            velocity.x = v;
         }
 
         if (InputManager.instance.leftPressed) {
-           velocity.x=-v;
+           velocity.x = -v;
         }
 
         if (InputManager.instance.upPressed){
-            velocity.y=-v;
+            velocity.y = -v;
         }
 
         if (InputManager.instance.downPressed){
-           velocity.y=v;
+           velocity.y = v;
         }
         position.addUp(velocity);
         position.x = Mathx.clamp(position.x, 0,6000);
@@ -54,32 +53,27 @@ public class MalePlayer extends Player implements PlayerMove{
     @Override
     public void run(Vector2D parentPosition) {
         super.run(parentPosition);
-
         eatCondom();
         eatPoopBullet();
-        eatBanana();
+        stand();
 
     }
 
-    private void eatBanana() {
-        Banana eatBanana = Physics.bodyinRed(this.boxCollider, Banana.class);
-        if (eatBanana != null && eatBanana.isActive){
-            eatBanana.getEat();
-            bananaStand = true;
+    private void stand() {
+        if (eatBanana()){
+            v = 0;
         }
-
-        if (bananaStand){
-            this.v = 0;
+        if (v == 0){
             if (cooldownBanana.run()){
                 cooldownBanana.reset();
-                this.v = 10;
-                bananaStand = false;
+                v = 10;
             }
         }
     }
 
     private void eatPoopBullet() {
         PlayerPoopBullet eatPoopBullet = Physics.bodyinRed(this.boxCollider, PlayerPoopBullet.class);
+
         if (eatPoopBullet != null && eatPoopBullet.isActive){
             eatPoopBullet.getEat();
             this.v = 5;

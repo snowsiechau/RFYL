@@ -35,8 +35,6 @@ public class PlayerPoopBullet extends GameObject implements Physicbody{
 
     @Override
     public BoxCollider getBoxCollider() {
-        return boxCollider;
+        return this.boxCollider;
     }
-
-
 }

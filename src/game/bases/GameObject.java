@@ -30,6 +30,10 @@ public class GameObject {
         isActive = true;
     }
 
+    public boolean isActive(){
+        return this.isActive;
+    }
+
     public static void add(GameObject gameObject){
         newGameObjects.add(gameObject);
         if (gameObject instanceof Physicbody){
