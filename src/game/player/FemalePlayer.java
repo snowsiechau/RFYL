@@ -3,97 +3,75 @@ package game.player;
 import game.bases.FrameCounter;
 import game.bases.GameObject;
 import game.bases.Vector2D;
-import game.bases.physics.Physicbody;
 import game.bases.physics.Physics;
-import game.items.Banana;
 import game.items.Heart;
-import game.items.Poop;
+import game.items.Lava;
 import inputs.InputManager;
-import org.omg.CORBA.MARSHAL;
 import tklibs.Mathx;
 
 /**
  * Created by Nttung PC on 8/3/2017.
  */
-public class FemalePlayer extends Player implements PlayerMove{
-    public Vector2D velocity;
-    public static int heart = 5;
-    public static int bullet;
+public class FemalePlayer extends Player{
+
+    public static int heart=5;
     boolean bulletDisable;
     FrameCounter cooldownBullet;
-    FrameCounter cooldownBanana;
-    public static int vFemale;
+    public static Player instanceFemale;
 
     public FemalePlayer() {
         super();
-        velocity = new Vector2D();
-        this.cooldownBullet = new FrameCounter(30);
-        cooldownBanana = new FrameCounter(30);
-        this.vFemale = 10;
+        this.cooldownBullet = new FrameCounter(5);
+        instanceFemale = this;
     }
 
     @Override
-    public void move(Player player) {
-        this.velocity.set(0,0);
-        Vector2D position = player.position;
-        if (InputManager.instance.dPressed) {
-            this.velocity.x = vFemale;
+    public void move() {
+        this.velocity.y += gravity;
+        this.velocity.x = 0;
+        if (InputManager.instance.aPressed){
+            this.velocity.x = -v;
         }
 
-        if (InputManager.instance.aPressed) {
-            this.velocity.x = -vFemale;
-        }
-
-        if (InputManager.instance.wPressed){
-            this.velocity.y = -vFemale;
-        }
-
-        if (InputManager.instance.sPressed){
-           this.velocity.y = vFemale;
-        }
-        position.addUp(velocity);
-        position.x = Mathx.clamp(position.x, 0,6000);
-    }
-
-    @Override
-    public void run(Vector2D parentPosition) {
-        super.run(parentPosition);
-        eatHeart();
-        eatPoop();
-        castBullet();
-        stand();
-    }
-
-    private void stand() {
-        if (eatBanana()){
-            vFemale = 0;
-        }
-        if (vFemale == 0){
-            if (cooldownBanana.run()){
-                cooldownBanana.reset();
-                vFemale = 10;
+        if (InputManager.instance.dPressed)
+            this.velocity.x = v;
+        if (InputManager.instance.wPressed) {
+            if (Physics.bodyInRect(position.add(0, 1), boxCollider.width, boxCollider.height, Lava.class) != null) {
+                this.velocity.y -= 3*v;
             }
         }
+        moveHorizontal();
+        position.x += velocity.x;
+
+        moveVertical();
+        position.y += velocity.y;
+
     }
 
-    private void castBullet() {
-        if (!bulletDisable && bullet > 0){
-            if (InputManager.instance.bPressed){
-                Vector2D velocityPoop;
-                Vector2D positionPoop;
-                if (this.position.x > MalePlayer.instanceMale.position.x){
-                    velocityPoop = new Vector2D(-20, 0);
-                    positionPoop = new Vector2D(this.position.x - 10, this.position.y - 20);
-                }else {
-                    velocityPoop = new Vector2D(20,0);
-                    positionPoop = new Vector2D(this.position.x + 10, this.position.y - 20);
+    public void eatHeart(){
+        Heart eatHeart = Physics.bodyInRect(this.boxCollider, Heart.class);
+        if (eatHeart != null && eatHeart.isActive){
+            heart--;
+            eatHeart.getEat();
+        }
+    }
+
+    private void castPoop() {
+        if (InputManager.instance.gPressed){
+            if (!bulletDisable && bullet > 0){
+                if (this.position.x - MalePlayer.instanceMale.position.x > 0){
+                    ThrowPoop PoopBullet = new ThrowPoop(new Vector2D(-20,0));
+                    PoopBullet.position.set(this.position.x - 70, this.position.y - 20);
+                    GameObject.add(PoopBullet);
+                    bullet--;
+                }else{
+                    ThrowPoop PoopBullet = new ThrowPoop(new Vector2D(20,0));
+                    PoopBullet.position.set(this.position.x + 70, this.position.y - 20);
+                    GameObject.add(PoopBullet);
+                    bullet--;
                 }
-                PlayerPoopBullet playerPoopBullet = new PlayerPoopBullet(velocityPoop);
-                playerPoopBullet.position.set(positionPoop);
-                GameObject.add(playerPoopBullet);
-                bullet--;
+                bulletDisable = true;
             }
-            bulletDisable = true;
         }
         cooldown();
     }
@@ -107,20 +85,11 @@ public class FemalePlayer extends Player implements PlayerMove{
         }
     }
 
-    private void eatPoop() {
-        Poop eatPoop = Physics.bodyinRed(this.boxCollider, Poop.class);
-
-        if (eatPoop != null && eatPoop.isActive){
-            bullet += 3;
-            eatPoop.getEat();
-        }
-    }
-
-    private void eatHeart() {
-        Heart eatHeart = Physics.bodyinRed(this.boxCollider, Heart.class);
-        if (eatHeart != null && eatHeart.isActive){
-            heart--;
-            eatHeart.getEat();
-        }
+    @Override
+    public void run(Vector2D parentPosition) {
+        super.run(parentPosition);
+        instanceFemale = this;
+        eatHeart();
+        castPoop();
     }
 }

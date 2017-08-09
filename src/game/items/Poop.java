@@ -10,7 +10,7 @@ import game.bases.renderer.ImageRenderer;
 /**
  * Created by Nttung PC on 8/4/2017.
  */
-public class Poop extends GameObject implements Physicbody{
+public class Poop extends GameObject implements Physicbody {
     BoxCollider boxCollider;
     Vector2D velocity;
     public Poop(Vector2D velocity) {
@@ -25,17 +25,20 @@ public class Poop extends GameObject implements Physicbody{
         this(new Vector2D(0,0));
     }
 
-    @Override
-    public void run(Vector2D parentPosition) {
-        super.run(parentPosition);
-        this.position.addUp(velocity);
-    }
 
     public void getEat(){
         this.isActive = false;
     }
 
-    public BoxCollider getBoxCollider() {
+    @Override
+    public void run(Vector2D parentPosition) {
+        super.run(parentPosition);
+        if (this.position.y < 680)
+        this.position.addUp(velocity);
+    }
+
+    @Override
+    public BoxCollider getBoxCollier() {
         return boxCollider;
     }
 }

@@ -10,13 +10,12 @@ import game.bases.renderer.ImageRenderer;
 /**
  * Created by Nttung PC on 8/4/2017.
  */
-public class Banana extends GameObject implements Physicbody{
-    BoxCollider boxCollider;
+public class Banana extends GameObject implements Physicbody {
+    public BoxCollider boxCollider;
     Vector2D velocity;
     public Banana(Vector2D velocity) {
-        super();
         this.renderer = new ImageRenderer(Utils.loadImage("assets/images/items/banana.png"));
-        this.boxCollider = new BoxCollider(32,32);
+        this.boxCollider = new BoxCollider(5,5);
         children.add(boxCollider);
         this.velocity = velocity;
     }
@@ -28,6 +27,7 @@ public class Banana extends GameObject implements Physicbody{
     @Override
     public void run(Vector2D parentPosition) {
         super.run(parentPosition);
+        if (this.position.y < 680)
         this.position.addUp(velocity);
     }
 
@@ -35,7 +35,8 @@ public class Banana extends GameObject implements Physicbody{
         this.isActive = false;
     }
 
-    public BoxCollider getBoxCollider() {
+    @Override
+    public BoxCollider getBoxCollier() {
         return boxCollider;
     }
 }

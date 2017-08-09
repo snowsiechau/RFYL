@@ -1,24 +1,24 @@
 package game.bird;
 
-import game.actions.SequenceAction;
 import game.bases.FrameCounter;
 import game.bases.GameObject;
 import game.bases.Vector2D;
+import game.items.Banana;
 
 /**
- * Created by SNOW on 8/7/2017.
+ * Created by SNOW on 8/9/2017.
  */
 public class BirdSpawner extends GameObject{
     FrameCounter frameCounter;
 
     public BirdSpawner() {
-        frameCounter = new FrameCounter(100);
-    }
+        this.frameCounter = new FrameCounter(300);
+        }
 
     @Override
     public void run(Vector2D parentPosition) {
         super.run(parentPosition);
-        if (frameCounter.run()){
+        if (frameCounter.run()) {
             frameCounter.reset();
             Bird bird = new Bird();
             GameObject.add(bird);

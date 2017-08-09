@@ -1,5 +1,7 @@
 package game.viewports;
 
+import game.Utils;
+import game.bases.renderer.ImageRenderer;
 import game.cameras.Camera;
 import game.bases.GameObject;
 

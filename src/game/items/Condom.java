@@ -8,7 +8,6 @@ import game.bases.physics.Physicbody;
 import game.bases.renderer.ImageRenderer;
 import game.cameras.Camera;
 
-import javax.xml.bind.util.ValidationEventCollector;
 import java.awt.*;
 
 /**
@@ -17,9 +16,7 @@ import java.awt.*;
 public class Condom extends GameObject implements Physicbody{
     public BoxCollider boxCollider;
     Vector2D velocity;
-
     public Condom(Vector2D velocity) {
-        super();
         this.renderer = new ImageRenderer(Utils.loadImage("assets/images/items/condom.png"));
         boxCollider = new BoxCollider(32,32);
         this.children.add(boxCollider);
@@ -33,6 +30,7 @@ public class Condom extends GameObject implements Physicbody{
     @Override
     public void run(Vector2D parentPosition) {
         super.run(parentPosition);
+        if (this.position.y < 680)
         this.position.addUp(velocity);
     }
 
@@ -41,7 +39,7 @@ public class Condom extends GameObject implements Physicbody{
     }
 
     @Override
-    public BoxCollider getBoxCollider() {
+    public BoxCollider getBoxCollier() {
         return this.boxCollider;
     }
 }

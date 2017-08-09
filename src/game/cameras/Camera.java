@@ -1,7 +1,11 @@
 package game.cameras;
 
+import game.Utils;
 import game.bases.GameObject;
 import game.bases.Vector2D;
+import game.bases.renderer.ImageRenderer;
+import game.bird.Bird;
+import game.player.FemalePlayer;
 
 /**
  * Created by Nttung PC on 8/2/2017.
@@ -10,10 +14,13 @@ public class Camera extends GameObject {
 
     public GameObject followedObject;
     private Vector2D offset;
+    HP hp;
 
     public Camera() {
         super();
         offset = new Vector2D();
+        hp = new HP();
+        GameObject.add(hp);
     }
 
     public Vector2D getOffset() {
@@ -27,8 +34,11 @@ public class Camera extends GameObject {
 
     @Override
     public void run(Vector2D parentPosition) {
-        this.position.x = followedObject.position.x;
+        if(followedObject != null) {
+            this.position.x = followedObject.position.x;
+        }
         super.run(parentPosition);
+        hp.position.set(this.position.x + 100, this.position.y + 100);
     }
 
     public Vector2D translate(Vector2D position) {

@@ -13,15 +13,12 @@ import game.bases.renderer.ImageRenderer;
 public class Heart extends GameObject implements Physicbody{
     public BoxCollider boxCollider;
     Vector2D velocity;
-
     public Heart(Vector2D velocity) {
-        super();
         this.renderer = new ImageRenderer(Utils.loadImage("assets/images/items/heart.png"));
         boxCollider = new BoxCollider(32,32);
         children.add(boxCollider);
         this.velocity = velocity;
     }
-
     public Heart(){
         this(new Vector2D(0,0));
     }
@@ -29,6 +26,7 @@ public class Heart extends GameObject implements Physicbody{
     @Override
     public void run(Vector2D parentPosition) {
         super.run(parentPosition);
+        if (this.position.y < 680)
         this.position.addUp(velocity);
     }
 
@@ -37,7 +35,7 @@ public class Heart extends GameObject implements Physicbody{
     }
 
     @Override
-    public BoxCollider getBoxCollider() {
+    public BoxCollider getBoxCollier() {
         return this.boxCollider;
     }
 }
