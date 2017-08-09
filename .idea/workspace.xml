@@ -2,68 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fc831ca-f5b1-439b-96c9-ab41dc38c1b2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/background/background.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bird/0.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bird/1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bird/10.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bird/11.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bird/12.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bird/2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bird/3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bird/4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bird/5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bird/6.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bird/7.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bird/8.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/bird/9.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/left/1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/left/2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/left/3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/left/4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/left/5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/left/6.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/left/7.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/left/8.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/left/9.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/right/1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/right/2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/right/3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/right/4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/right/5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/right/6.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/right/7.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/right/8.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/right/9.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/images/playerboy/straight/0.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/game/bases/GameObjectPool.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/game/bases/renderer/Animation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/game/cameras/HP.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/game/player/PlayerAnimator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/game/player/ThrowPoop.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/background/background_dem.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/background/background_duongpho.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/background/citynight.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/playerboy/shape229.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/playerboy/shape230.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/playerboy/shape231.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/playerboy/shape232.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/playerboy/shape233.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/playerboy/shape235.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/playerboy/shape236.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/playerboy/shape237.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/images/playerboy/shape676.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/RFYL-ci/game/player/FemaleMove.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/RFYL-ci/game/player/MaleMove.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/RFYL-ci/game/player/PlayerMove.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/game/actions/Action.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/game/actions/MoveByAction.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/game/actions/RepeatForeverAction.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/game/actions/SequenceAction.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/game/actions/WaitAction.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/game/player/FemaleMove.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/game/player/MaleMove.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/game/player/PlayerMove.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/game/player/PlayerPoopBullet.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/RFYL-ci/game/GameWindow$1.class" afterPath="$PROJECT_DIR$/out/production/RFYL-ci/game/GameWindow$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/RFYL-ci/game/GameWindow$2.class" afterPath="$PROJECT_DIR$/out/production/RFYL-ci/game/GameWindow$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/RFYL-ci/game/GameWindow.class" afterPath="$PROJECT_DIR$/out/production/RFYL-ci/game/GameWindow.class" />
@@ -85,31 +23,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/RFYL-ci/game/viewports/ViewPort.class" afterPath="$PROJECT_DIR$/out/production/RFYL-ci/game/viewports/ViewPort.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/RFYL-ci/inputs/InputManager.class" afterPath="$PROJECT_DIR$/out/production/RFYL-ci/inputs/InputManager.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RFYL-ci.iml" afterPath="$PROJECT_DIR$/RFYL-ci.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/map.json" afterPath="$PROJECT_DIR$/map.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/GameWindow.java" afterPath="$PROJECT_DIR$/src/game/GameWindow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/bases/GameObject.java" afterPath="$PROJECT_DIR$/src/game/bases/GameObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/bases/physics/BoxCollider.java" afterPath="$PROJECT_DIR$/src/game/bases/physics/BoxCollider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/bases/physics/Physicbody.java" afterPath="$PROJECT_DIR$/src/game/bases/physics/Physicbody.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/bases/physics/Physics.java" afterPath="$PROJECT_DIR$/src/game/bases/physics/Physics.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/bases/renderer/ImageRenderer.java" afterPath="$PROJECT_DIR$/src/game/bases/renderer/ImageRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/bases/renderer/Renderer.java" afterPath="$PROJECT_DIR$/src/game/bases/renderer/Renderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/bird/Bird.java" afterPath="$PROJECT_DIR$/src/game/bird/Bird.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/bird/BirdSpawner.java" afterPath="$PROJECT_DIR$/src/game/bird/BirdSpawner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/cameras/Camera.java" afterPath="$PROJECT_DIR$/src/game/cameras/Camera.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/items/Banana.java" afterPath="$PROJECT_DIR$/src/game/items/Banana.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/items/Condom.java" afterPath="$PROJECT_DIR$/src/game/items/Condom.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/items/Drug.java" afterPath="$PROJECT_DIR$/src/game/items/Drug.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/items/Heart.java" afterPath="$PROJECT_DIR$/src/game/items/Heart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/items/Lava.java" afterPath="$PROJECT_DIR$/src/game/items/Lava.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/items/Poop.java" afterPath="$PROJECT_DIR$/src/game/items/Poop.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/player/FemalePlayer.java" afterPath="$PROJECT_DIR$/src/game/player/FemalePlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/player/MalePlayer.java" afterPath="$PROJECT_DIR$/src/game/player/MalePlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/player/Player.java" afterPath="$PROJECT_DIR$/src/game/player/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/scenes/BackGround.java" afterPath="$PROJECT_DIR$/src/game/scenes/BackGround.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/viewports/ViewPort.java" afterPath="$PROJECT_DIR$/src/game/viewports/ViewPort.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inputs/InputManager.java" afterPath="$PROJECT_DIR$/src/inputs/InputManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tklibs/Mathx.java" afterPath="$PROJECT_DIR$/src/tklibs/Mathx.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -958,11 +871,19 @@
       <option name="project" value="LOCAL" />
       <updated>1502103776187</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="all">
+      <created>1502296806955</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1502296806955</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
