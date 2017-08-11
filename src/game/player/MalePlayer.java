@@ -15,7 +15,7 @@ public class MalePlayer extends Player{
 
     boolean bulletDisable;
     FrameCounter cooldownBullet;
-    public int condom=10;
+    public int condom = 10;
     public static Player instanceMale;
 
     public MalePlayer() {
@@ -95,5 +95,11 @@ public class MalePlayer extends Player{
         castPoop();
         animate();
         instanceMale = this;
+
+        if (condom == 0){
+            int completeTime = (int) System.currentTimeMillis();
+            int totalTime = completeTime - startTime;
+            System.out.println("complete in " + totalTime);
+        }
     }
 }

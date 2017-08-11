@@ -14,13 +14,10 @@ public class Camera extends GameObject {
 
     public GameObject followedObject;
     private Vector2D offset;
-    HP hp;
 
     public Camera() {
         super();
         offset = new Vector2D();
-        hp = new HP();
-        GameObject.add(hp);
     }
 
     public Vector2D getOffset() {
@@ -38,7 +35,6 @@ public class Camera extends GameObject {
             this.position.x = followedObject.position.x;
         }
         super.run(parentPosition);
-        hp.position.set(this.position.x + 100, this.position.y + 100);
     }
 
     public Vector2D translate(Vector2D position) {

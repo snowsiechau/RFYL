@@ -14,7 +14,7 @@ import tklibs.Mathx;
  */
 public class FemalePlayer extends Player{
 
-    public static int heart=5;
+    public static int heart= 5;
     boolean bulletDisable;
     FrameCounter cooldownBullet;
     public static Player instanceFemale;
@@ -91,5 +91,12 @@ public class FemalePlayer extends Player{
         instanceFemale = this;
         eatHeart();
         castPoop();
+
+        if (heart == 0){
+            int completeTime = (int) System.currentTimeMillis();
+            int totalTime = completeTime - startTime;
+            System.out.println("complete in " + totalTime);
+            heart = -1;
+        }
     }
 }

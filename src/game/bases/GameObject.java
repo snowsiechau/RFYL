@@ -78,4 +78,9 @@ public class GameObject {
         isActive = true;
     }
 
+    public static void clear(){
+        gameObjects.clear();
+        Physics.clear();
+    }
+
 }

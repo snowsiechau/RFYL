@@ -39,6 +39,7 @@ public class Player extends GameObject implements Physicbody {
     boolean buffSpeedDrug;
 
     public Contraints constraints;
+    int startTime;
 
     public Player() {
         super();
@@ -50,6 +51,7 @@ public class Player extends GameObject implements Physicbody {
         frameCounterDrug = new FrameCounter(30);
         velocity = new Vector2D();
         children.add(boxCollider);
+        startTime = (int) System.currentTimeMillis();
     }
 
     public Player createMalePlayer() {
