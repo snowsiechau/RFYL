@@ -1,13 +1,15 @@
 package game.scenes;
 
-
 /**
- * Created by SNOW on 8/11/2017.
+ * Created by SNOW on 8/12/2017.
  */
 public class SceneManager {
-
     private Scene currentScene;
     private Scene nextScene;
+
+    public void setCurrentScene(Scene currentScene) {
+        this.currentScene = currentScene;
+    }
 
     public static final SceneManager instance = new SceneManager();
 
@@ -22,11 +24,16 @@ public class SceneManager {
                 nextScene.init();
                 currentScene = nextScene;
                 nextScene = null;
+
             }
         }
     }
 
     public void requestChangeScene(Scene scene){
-        nextScene = scene;
+        if (currentScene == null){
+            currentScene = scene;
+        }else {
+            nextScene = scene;
+        }
     }
 }

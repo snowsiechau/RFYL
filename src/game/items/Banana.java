@@ -2,9 +2,9 @@ package game.items;
 
 import game.Utils;
 import game.bases.GameObject;
-import game.bases.Vector2D;
 import game.bases.physics.BoxCollider;
 import game.bases.physics.Physicbody;
+import game.bases.renderer.Animation;
 import game.bases.renderer.ImageRenderer;
 
 /**
@@ -12,23 +12,15 @@ import game.bases.renderer.ImageRenderer;
  */
 public class Banana extends GameObject implements Physicbody {
     public BoxCollider boxCollider;
-    Vector2D velocity;
-    public Banana(Vector2D velocity) {
-        this.renderer = new ImageRenderer(Utils.loadImage("assets/images/items/banana.png"));
+    public Banana() {
+        this.renderer = new Animation(4,true,
+                Utils.loadImage("assets/images/items/banana/banana1.png"),
+                Utils.loadImage("assets/images/items/banana/banana2.png"),
+                Utils.loadImage("assets/images/items/banana/banana3.png"),
+                Utils.loadImage("assets/images/items/banana/banana4.png")
+        );
         this.boxCollider = new BoxCollider(5,5);
         children.add(boxCollider);
-        this.velocity = velocity;
-    }
-
-    public Banana(){
-        this(new Vector2D(0,0));
-    }
-
-    @Override
-    public void run(Vector2D parentPosition) {
-        super.run(parentPosition);
-        if (this.position.y < 680)
-        this.position.addUp(velocity);
     }
 
     public void getEat(){

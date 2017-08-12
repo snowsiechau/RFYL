@@ -1,15 +1,29 @@
 package game.scenes;
 
+import game.GameWindow;
 import game.Utils;
 import game.bases.GameObject;
 import game.bases.renderer.ImageRenderer;
 import inputs.InputListener;
 import inputs.InputManager;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.util.Set;
+
 /**
- * Created by SNOW on 8/11/2017.
+ * Created by SNOW on 8/12/2017.
  */
 public class MenuScene extends Scene implements InputListener{
+
+    @Override
+    public void init() {
+        GameObject introImage = new GameObject();
+        introImage.renderer = new ImageRenderer(Utils.loadImage("assets/startScene/rfyl.jpg"));
+        introImage.position.set(Settings.windowWidth / 2, Settings.windowHeight / 2);
+        GameObject.add(introImage);
+        InputManager.instance.register(this);
+    }
+
     @Override
     public boolean onKeyPressed(int keyCode) {
         return false;
@@ -17,17 +31,8 @@ public class MenuScene extends Scene implements InputListener{
 
     @Override
     public boolean onKeyReleased(int keyCode) {
+        GameWindow.currentTime1 = System.currentTimeMillis();
         SceneManager.instance.requestChangeScene(new Level1Scene());
         return true;
-    }
-
-    @Override
-    public void init() {
-        GameObject introImage = new GameObject();
-        introImage.renderer = new ImageRenderer(Utils.loadImage("assets/images/startScene/_run_for_your_life__by_yoshiman1118-d2xti9b.png"));
-        introImage.position.set(1600,800);
-        GameObject.add(introImage);
-
-        InputManager.instance.register(this);
     }
 }

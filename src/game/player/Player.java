@@ -9,49 +9,48 @@ import game.bases.physics.BoxCollider;
 import game.bases.physics.Physics;
 import game.bases.physics.Physicbody;
 import game.bases.renderer.ImageRenderer;
-import game.cameras.Camera;
 import game.items.Banana;
 import game.items.Drug;
 import game.items.Lava;
 import game.items.Poop;
-import inputs.InputManager;
+import tklibs.AudioUtils;
 
-import javax.swing.*;
-import java.awt.*;
+import static game.player.MalePlayer.condom;
 
 /**
  * Created by Nttung PC on 8/3/2017.
  */
 public class Player extends GameObject implements Physicbody {
 
-    BoxCollider boxCollider;
+    public BoxCollider boxCollider;
     public int v;
     public int bullet;
     public Vector2D velocity;
     public float gravity = 2f;
-    public int life;
-    PlayerAnimator maleAnimator;
 
     FrameCounter slowPoopBullet;
     FrameCounter frameCounterBanana;
     FrameCounter frameCounterDrug;
-    boolean bananaStand;
+    public boolean  bananaStand;
     boolean buffSpeedDrug;
 
     public Contraints constraints;
-    int startTime;
+
+    public static BoxCollider maleColider;
+    public static BoxCollider femaleColider;
 
     public Player() {
         super();
         v=10;
         constraints = new Contraints(0,670,0,6400);
-        boxCollider = new BoxCollider(60,60);
-        slowPoopBullet = new FrameCounter(30);
+        boxCollider = new BoxCollider(30,60);
+        maleColider = new BoxCollider(30,60);
+        femaleColider = new BoxCollider(30,60);
+        slowPoopBullet = new FrameCounter(60);
         frameCounterBanana = new FrameCounter(30);
         frameCounterDrug = new FrameCounter(30);
         velocity = new Vector2D();
         children.add(boxCollider);
-        startTime = (int) System.currentTimeMillis();
     }
 
     public Player createMalePlayer() {
@@ -61,7 +60,6 @@ public class Player extends GameObject implements Physicbody {
 
     public static Player createFemalePlayer() {
         Player player = new FemalePlayer();
-        player.renderer = new ImageRenderer(Utils.loadImage("assets/images/playerboy/straight/0.png"));
         return player;
     }
 
@@ -76,6 +74,7 @@ public class Player extends GameObject implements Physicbody {
     private void eatPoopBullet() {
         ThrowPoop eatPoopBullet = Physics.bodyInRect(this.boxCollider, ThrowPoop.class);
         if (eatPoopBullet != null && eatPoopBullet.isActive){
+            AudioUtils.playMedia("assets/music/hurt.wav");
             eatPoopBullet.getEat();
             v = 5;
         }
@@ -90,6 +89,7 @@ public class Player extends GameObject implements Physicbody {
     public void eatBanana() {
         Banana eatBanana = Physics.bodyInRect(this.boxCollider, Banana.class);
         if (eatBanana != null && eatBanana.isActive){
+            AudioUtils.playMedia("assets/music/fall.wav");
             eatBanana.getEat();
             bananaStand = true;
         }
@@ -104,6 +104,7 @@ public class Player extends GameObject implements Physicbody {
     public void eatDrug() {
         Drug eatDrug = Physics.bodyInRect(this.boxCollider,Drug.class);
         if (eatDrug != null && eatDrug.isActive ){
+            AudioUtils.playMedia("assets/music/Pickup_Item.wav");
             eatDrug.getEat();
             v=15;
             buffSpeedDrug = true;

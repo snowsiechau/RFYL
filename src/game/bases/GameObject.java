@@ -82,5 +82,4 @@ public class GameObject {
         gameObjects.clear();
         Physics.clear();
     }
-
 }

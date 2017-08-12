@@ -1,23 +1,18 @@
 package game;
 
 
-import com.google.gson.Gson;
-import game.bases.Contraints;
+
 import game.bases.GameObject;
-import game.bases.Vector2D;
-import game.bird.BirdSpawner;
-import game.gson.MapJson;
-import game.items.*;
-import game.scenes.BackGround;
-import game.scenes.MenuScene;
-import game.scenes.Scene;
-import game.scenes.SceneManager;
+
+import game.player.Player;
+import game.scenes.*;
 import game.viewports.ViewPort;
 import inputs.InputManager;
 import game.player.FemalePlayer;
 import game.player.MalePlayer;
-import game.player.Player;
-import javafx.embed.swing.JFXPanel;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
+import tklibs.AudioUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,20 +27,23 @@ import java.awt.image.BufferedImage;
  * Created by Nttung PC on 8/1/2017.
  */
 public class GameWindow extends JFrame {
-    JFXPanel fxPanel = new JFXPanel();
-
     BufferedImage backBufferImage;
     Graphics2D backBufferGraphic2D;
+
+    public static long currentTime1;
+    public static long endTime1;
+    public static long currentTime2;
+    public static long endTime2;
 
     InputManager inputManager = InputManager.instance;
     float distance;
 
-    ViewPort maleViewPort;
-    ViewPort femaleViewPort;
-    ViewPort mainViewPort;
+    public static ViewPort maleViewPort;
+    public static ViewPort femaleViewPort;
+    public static ViewPort mainViewPort;
 
     Scene startScene;
-
+    public static int checkLevel = 0;
 
 
     private BufferedImage leftBufferImage;
@@ -55,8 +53,9 @@ public class GameWindow extends JFrame {
 
     public GameWindow() {
         setupWindow();
+        MalePlayer.instanceMale = new Player();
+        FemalePlayer.instanceFemale = new Player();
         setupInput();
-        addBird();
         setupStartScene();
         addViewPorts();
         setupBackBuffer();
@@ -66,16 +65,12 @@ public class GameWindow extends JFrame {
     private void setupStartScene() {
         startScene = new MenuScene();
         startScene.init();
+        SceneManager.instance.requestChangeScene(startScene);
     }
-
-    private void addBird() {
-        GameObject.add(new BirdSpawner());
-    }
-
 
 
     private void setupWindow(){
-        this.setSize(1600,800);
+        this.setSize(1500,800);
         this.setResizable(false);
         this.setTitle("Run for your life");
         this.addWindowListener(new WindowAdapter() {
@@ -138,7 +133,17 @@ public class GameWindow extends JFrame {
 
     long lastUpdateTime;
     public void loop(){
+        AudioUtils.initialize();
+        MediaPlayer mediaPlayer = AudioUtils.playMedia("assets/music/jamebond.mp3");
         while(true){
+            mediaPlayer.setAutoPlay(true);
+            mediaPlayer.setOnEndOfMedia(new Runnable() {
+                @Override
+                public void run() {
+                    mediaPlayer.seek(Duration.ZERO);
+                }
+            });
+            mediaPlayer.play();
             long curentTime = System.currentTimeMillis();
             if (curentTime - lastUpdateTime > 17){
                 lastUpdateTime = curentTime;
@@ -148,17 +153,30 @@ public class GameWindow extends JFrame {
         }
     }
 
+    public void nextLevel2(){
+        if ((MalePlayer.hitFemale() || FemalePlayer.heart == 5) && checkLevel == 1){
+           new Level1Scene().nextSence();
+        }
+    }
+
+    public void end(){
+        if ((FemalePlayer.hitMale() || MalePlayer.condom == 5) && checkLevel == 2) {
+            new Level2Scene().nextSence();
+        }
+    }
+
     private void run() {
         GameObject.runAll();
         SceneManager.instance.changeSceneIfNeeded();
+        nextLevel2();
+        end();
     }
 
     private void render() {
         backBufferGraphic2D.setColor(Color.BLACK);
         backBufferGraphic2D.fillRect(0, 0, this.getWidth(), this.getHeight());
-
         distance = Math.abs(maleViewPort.getCamera().screenPosition.x - femaleViewPort.getCamera().screenPosition.x);
-        if (distance > 750){
+        if (distance > 500){
             maleViewPort.render(leftG2d, GameObject.getGameObjects());
             femaleViewPort.render(rightG2d, GameObject.getGameObjects());
             backBufferGraphic2D.drawImage(leftBufferImage, 0, 0, null);
@@ -169,6 +187,19 @@ public class GameWindow extends JFrame {
             mainViewPort.getCamera().followedObject.position.x = (MalePlayer.instanceMale.position.x + FemalePlayer.instanceFemale.position.x)/2;
             backBufferGraphic2D.drawImage(backBufferImage,0,0,null);
         }
+
+        backBufferGraphic2D.drawImage(Utils.loadImage("assets/images/maleplayer/faceboy.png"), 100, this.getHeight() - 50, null);
+        backBufferGraphic2D.drawImage(Utils.loadImage("assets/images/femaleplayer/facegirl.png"), this.getWidth() - 500, this.getHeight() - 50, null);
+
+        for (int i = 1; i <= FemalePlayer.heart; i++){
+            backBufferGraphic2D.drawImage(Utils.loadImage("assets/images/items/heart/heart1.png"), this.getWidth() - 500 + i * 50, this.getHeight() - 50, null);
+
+        }
+
+        for (int i = 1; i <= MalePlayer.condom; i++){
+            backBufferGraphic2D.drawImage(Utils.loadImage("assets/images/items/condom.png"), 100 + i * 50, this.getHeight() - 50, null);
+        }
+
         Graphics2D graphics2D = (Graphics2D) this.getGraphics();
         graphics2D.drawImage(backBufferImage,0,0,null);
     }
