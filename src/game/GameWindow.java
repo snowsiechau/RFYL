@@ -143,7 +143,6 @@ public class GameWindow extends JFrame {
                     mediaPlayer.seek(Duration.ZERO);
                 }
             });
-            mediaPlayer.play();
             long curentTime = System.currentTimeMillis();
             if (curentTime - lastUpdateTime > 17){
                 lastUpdateTime = curentTime;
